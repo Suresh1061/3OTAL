@@ -19,8 +19,8 @@ const MobileBottleAnimation = (props: Props) => {
           };
      }, []);
 
-     const capY = useTransform(scrollY, [0, viewportHeight], [-viewportHeight*0.35, viewportHeight*0.43]);
-     const bodyY = useTransform(scrollY, [0, viewportHeight], [-viewportHeight*0.02, viewportHeight*0.43]);
+     const capY = useTransform(scrollY, [0, viewportHeight], [-viewportHeight * 0.25, viewportHeight * 0.43]);
+     const bodyY = useTransform(scrollY, [0, viewportHeight], [-viewportHeight * 0.01, viewportHeight * 0.43]);
 
      if (!viewportHeight) return null;
 
@@ -28,9 +28,9 @@ const MobileBottleAnimation = (props: Props) => {
           <div className='flex sm:hidden'>
                <motion.div className="flex absolute top-[25%] left-[40%] transform -translate-x-1/2 -translate-y-1/2">
                     <motion.div
-                         initial={{ y: -viewportHeight*0.15 }}
-                         animate={{ y: -viewportHeight*0.35 }}
-                         exit={{ y: -viewportHeight*0.35 }}
+                         initial={{ y: -viewportHeight * 0.15 }}
+                         animate={{ y: -viewportHeight * 0.25 }}
+                         exit={{ y: -viewportHeight * 0.25 }}
                          transition={{ delay: 0.8, duration: 1, ease: 'easeIn' }}
                          style={{ y: capY }}
                     >
@@ -38,9 +38,9 @@ const MobileBottleAnimation = (props: Props) => {
                     </motion.div>
 
                     <motion.div
-                         initial={{ y: -viewportHeight*0.15 }}
-                         animate={{ y: -viewportHeight*0.02}}
-                         exit={{ y: -viewportHeight*0.02 }}
+                         initial={{ y: -viewportHeight * 0.15 }}
+                         animate={{ y: -viewportHeight * 0.01 }}
+                         exit={{ y: -viewportHeight * 0.01 }}
                          transition={{ delay: 0.8, duration: 1, ease: 'easeIn' }}
                          style={{ y: bodyY }}
                     >
