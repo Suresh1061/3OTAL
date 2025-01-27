@@ -41,7 +41,7 @@ const Navbar: React.FC = () => {
                                         <Menu className="w-6 h-6" />
                                    </button>
                               </DrawerTrigger>
-                              <DrawerContent className='h-screen w-2/3'>
+                              <DrawerContent className='h-full w-2/3'>
                                    <DrawerHeader className="flex justify-between items-center px-4 py-2 border-b">
                                         <BlackLogo className="w-28 mb-2" />
                                         <DrawerClose asChild>
