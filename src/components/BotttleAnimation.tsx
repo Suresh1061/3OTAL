@@ -11,7 +11,6 @@ const BotttleAnimation = (props: Props) => {
      const [viewportHeight, setViewportHeight] = useState(0);
 
      useEffect(() => {
-          // Set viewport height on the client side
           setViewportHeight(window.innerHeight);
 
           const handleResize = () => setViewportHeight(window.innerHeight);
@@ -22,34 +21,35 @@ const BotttleAnimation = (props: Props) => {
           };
      }, []);
 
-     // Only calculate transforms if viewportHeight is available
      const capY = useTransform(scrollY, [0, viewportHeight], [-150, 600]);
      const bodyY = useTransform(scrollY, [0, viewportHeight], [220, 600]);
 
-     if (!viewportHeight) return null; // Render nothing until client-side hydration is complete
+     if (!viewportHeight) return null;
 
      return (
-          <motion.div className="hidden sm:flex absolute top-[20%] left-[44%] transform -translate-x-1/2 -translate-y-1/2">
-               <motion.div
-                    initial={{ y: 0 }}
-                    animate={{ y: -150 }}
-                    exit={{ y: -150 }}
-                    transition={{ delay: 1, duration: 1, ease: 'easeIn' }}
-                    style={{ y: capY }}
-               >
-                    <BottleCap className="absolute z-30 w-[5rem] sm:w-[7rem] lg:w-[10rem]" />
-               </motion.div>
+          <div className='hidden sm:flex'>
+               <motion.div className="flex absolute top-[20%] left-[44%] transform -translate-x-1/2 -translate-y-1/2">
+                    <motion.div
+                         initial={{ y: 0 }}
+                         animate={{ y: -150 }}
+                         exit={{ y: -150 }}
+                         transition={{ delay: 1, duration: 1, ease: 'easeIn' }}
+                         style={{ y: capY }}
+                    >
+                         <BottleCap className="absolute z-30 w-[5rem] sm:w-[7rem] lg:w-[10rem]" />
+                    </motion.div>
 
-               <motion.div
-                    initial={{ y: 0 }}
-                    animate={{ y: 220 }}
-                    exit={{ y: 220 }}
-                    transition={{ delay: 1, duration: 1, ease: 'easeIn' }}
-                    style={{ y: bodyY }}
-               >
-                    <BottleBody className="absolute z-30 w-[5rem] sm:w-[7rem] lg:w-[10rem]" />
+                    <motion.div
+                         initial={{ y: 0 }}
+                         animate={{ y: 220 }}
+                         exit={{ y: 220 }}
+                         transition={{ delay: 1, duration: 1, ease: 'easeIn' }}
+                         style={{ y: bodyY }}
+                    >
+                         <BottleBody className="absolute z-30 w-[5rem] sm:w-[7rem] lg:w-[10rem]" />
+                    </motion.div>
                </motion.div>
-          </motion.div>
+          </div>
      );
 };
 

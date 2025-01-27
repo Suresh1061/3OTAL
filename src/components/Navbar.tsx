@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
                          <ul className="flex justify-between items-center gap-10">
                               {navItems.map((item) => (
                                    <li
-                                        className="list-none cursor-pointer text-base font-medium hover:text-gray-600"
+                                        className="list-none cursor-pointer text-base font-normal hover:text-gray-600"
                                         key={item}
                                    >
                                         {item}

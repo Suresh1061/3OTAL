@@ -1,54 +1,54 @@
-'use client';
-
 import React, { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { BottleCap, BottleBody } from './SVGIcon';
 
-const MobileBottleAnimation = () => {
-     // const { scrollY } = useScroll();
-     // const [viewportHeight, setViewportHeight] = useState<number | null>(null);
+type Props = {};
 
-     // useEffect(() => {
-     //      const updateViewportHeight = () => {
-     //           setViewportHeight(window.innerHeight || document.documentElement.clientHeight);
-     //      };
+const MobileBottleAnimation = (props: Props) => {
+     const { scrollY } = useScroll();
+     const [viewportHeight, setViewportHeight] = useState(0);
 
-     //      updateViewportHeight();
-     //      window.addEventListener('resize', updateViewportHeight);
+     useEffect(() => {
+          setViewportHeight(window.innerHeight);
 
-     //      return () => window.removeEventListener('resize', updateViewportHeight);
-     // }, []);
+          const handleResize = () => setViewportHeight(window.innerHeight);
+          window.addEventListener('resize', handleResize);
 
-     // if (viewportHeight === null) {
-     //      return null;
-     // }
+          return () => {
+               window.removeEventListener('resize', handleResize);
+          };
+     }, []);
 
-     // const capY = useTransform(scrollY, [0, viewportHeight], [-0.2 * viewportHeight, 0.5 * viewportHeight]);
-     // const bodyY = useTransform(scrollY, [0, viewportHeight], [0.1 * viewportHeight, 0.5 * viewportHeight]);
+     const capY = useTransform(scrollY, [0, viewportHeight], [-viewportHeight*0.35, viewportHeight*0.43]);
+     const bodyY = useTransform(scrollY, [0, viewportHeight], [-viewportHeight*0.02, viewportHeight*0.43]);
 
-     // return (
-     //      <motion.div className="relative h-screen overflow-hidden">
-     //           <motion.div
-     //                initial={{ y: 0 }}
-     //                animate={{ y: -0.2 * viewportHeight }}
-     //                exit={{ y: -0.2 * viewportHeight }}
-     //                transition={{ delay: 1, duration: 1, ease: 'easeIn' }}
-     //                style={{ y: capY }}
-     //           >
-     //                <BottleCap className="absolute left-1/2 transform -translate-x-1/2 z-30 w-[5rem] sm:w-[7rem] lg:w-[10rem]" />
-     //           </motion.div>
+     if (!viewportHeight) return null;
 
-     //           <motion.div
-     //                initial={{ y: 0 }}
-     //                animate={{ y: 0.1 * viewportHeight }}
-     //                exit={{ y: 0.1 * viewportHeight }}
-     //                transition={{ delay: 1, duration: 1, ease: 'easeIn' }}
-     //                style={{ y: bodyY }}
-     //           >
-     //                <BottleBody className="absolute left-1/2 transform -translate-x-1/2 z-30 w-[5rem] sm:w-[7rem] lg:w-[10rem]" />
-     //           </motion.div>
-     //      </motion.div>
-     // );
+     return (
+          <div className='flex sm:hidden'>
+               <motion.div className="flex absolute top-[25%] left-[40%] transform -translate-x-1/2 -translate-y-1/2">
+                    <motion.div
+                         initial={{ y: -viewportHeight*0.15 }}
+                         animate={{ y: -viewportHeight*0.35 }}
+                         exit={{ y: -viewportHeight*0.35 }}
+                         transition={{ delay: 0.8, duration: 1, ease: 'easeIn' }}
+                         style={{ y: capY }}
+                    >
+                         <BottleCap className="absolute z-30 w-[5rem] sm:w-[5rem]" />
+                    </motion.div>
+
+                    <motion.div
+                         initial={{ y: -viewportHeight*0.15 }}
+                         animate={{ y: -viewportHeight*0.02}}
+                         exit={{ y: -viewportHeight*0.02 }}
+                         transition={{ delay: 0.8, duration: 1, ease: 'easeIn' }}
+                         style={{ y: bodyY }}
+                    >
+                         <BottleBody className="absolute z-30 w-[5rem] sm:w-[5rem]" />
+                    </motion.div>
+               </motion.div>
+          </div>
+     );
 };
 
 export default MobileBottleAnimation;

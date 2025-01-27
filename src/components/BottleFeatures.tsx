@@ -10,7 +10,7 @@ const BottleFeatures = () => {
                     <Image
                          src={bottleInHand}
                          alt="Person holding a water bottle"
-                         className="w-full h-full object-cover"
+                         className="w-auto h-full object-cover"
                          priority
                          placeholder="blur"
                          blurDataURL="/placeholder.png"
@@ -19,8 +19,8 @@ const BottleFeatures = () => {
                <div className="w-1/2 h-auto lg:h-full bg-[#20292C] flex justify-end md:justify-center items-center p-6 lg:p-12">
                     <div className="w-full max-w-md mx-auto flex flex-col space-y-8 lg:space-y-12">
                          {bottleItems.map((item) => (
-                              <div key={item.id} className="flex items-center gap-4 md:gap-6">
-                                   <div className="w-12 h-12 md:w-16 md:h-16 flex-shrink-0">
+                              <div key={item.id} className="flex max-sm:flex-col items-end sm:items-center gap-3 md:gap-6">
+                                   <div className="w-10 h-10 md:w-16 md:h-16 flex-shrink-0">
                                         <Image
                                              src={item.icon}
                                              alt={`${item.name} icon`}
@@ -29,7 +29,7 @@ const BottleFeatures = () => {
                                              className="w-full h-full object-cover rounded-md"
                                         />
                                    </div>
-                                   <h3 className="text-white text-lg sm:text-xl lg:text-3xl xl:text-[40px]">
+                                   <h3 className="text-white text-sm sm:text-xl lg:text-3xl xl:text-[40px] max-sm:text-end max-w-24">
                                         {item.name}
                                    </h3>
                               </div>
